@@ -1,5 +1,5 @@
 # BlazorServerWithControllers-PaymentAPI
-The project is architecturally designed to be testable. In the front-end, Blazor Server and Bootstrap; in the backend, C# and .Net Core 3 are employed. Also For the Test project, NUnit and Moq frameworks is used. 
+The project is architecturally designed to be testable. In the front-end, Blazor Server and Bootstrap; in the backend, C# and .Net Core 3 are employed. Also For the Test project, NUnit and Moq frameworks are used. 
 
 
 # Description:

@@ -7,6 +7,6 @@ In order to make a payment with the credit card, user has to provide credit card
 
 Input parameters: Card owner, Credit Card number, issue date and CVC.
 
-Logic verifies that all fields are provided, credit card is not expired, credit card type is resplved based on the card number and checks if it is valid, CVC is valid for specified credit card type.
+Logic verifies that all fields are provided, credit card is not expired, credit card type is resolved based on the card number and checks if it is valid, CVC is valid for specified credit card type.
 
 API returns credit card type in case of success for Master Card, Visa or American Express and returns all validation errors in case of failure.

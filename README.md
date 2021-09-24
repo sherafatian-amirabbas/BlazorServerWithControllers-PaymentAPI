@@ -6,7 +6,7 @@ In the front-end, Blazor Server and Bootstrap; in the backend, C# and .NET Core 
 #### Description:
 In order to make a payment with the credit card, user has to provide credit card information and it has to be validated. The API validates credit card data and recognize the Credit Card type out of Master Card, Visa and American Express. 
 
-Input parameters: Card owner, Credit Card number, issue date and CVC.
+Input parameters: Card Owner, Credit Card Number, Expiration Date and CVC.
 
 <br/>
 
@@ -28,7 +28,7 @@ The Card Number 464637 is not valid for the Visa type, since they starts with a 
 <br/> 
 The CVC 3245 is not a valid CVC for MasterCard type, since it must contain 3 digits.   
 <br/>
-The Issue Date is 23/09/2020 and the current date is 24/09/2021, so the Card is expired.   
+The Expiration Date is one month before today, so the Card is expired.   
 <br/>
-The Card Number 378282246310005 is a valid American Express card and in the response we must receive this specific type recognized by the API.   
+The Card Number 378282246310005 is a valid American Express card and in the response we must receive this specific type recognized by the API (assuming there are not any other validation error).   
 <br/>

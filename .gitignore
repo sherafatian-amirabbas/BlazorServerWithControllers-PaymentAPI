@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+
+/Web.Payment/obj
+/Web.Payment/bin
+
+/Web.Payment.UnitTest/obj
+/Web.Payment.UnitTest/bin

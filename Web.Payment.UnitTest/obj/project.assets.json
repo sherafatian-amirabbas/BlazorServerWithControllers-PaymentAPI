@@ -409,7 +409,7 @@
           "lib/netstandard2.0/NuGet.Frameworks.dll": {}
         }
       },
-      "NUnit/3.12.0": {
+      "NUnit/3.13.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "2.0.0"
@@ -424,7 +424,7 @@
           "build/NUnit.props": {}
         }
       },
-      "NUnit3TestAdapter/3.16.1": {
+      "NUnit3TestAdapter/3.17.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.DotNet.InternalAbstractions": "1.0.0",
@@ -1807,10 +1807,10 @@
         "nuget.frameworks.nuspec"
       ]
     },
-    "NUnit/3.12.0": {
-      "sha512": "3oJTrcUcT9wmweBUwgUf0f1XIYy6RZq2ziV+RM95HMKAJGsHPN2i3MKK1dAPvDPMRLz799Llj4eyu/STB9Q7OA==",
+    "NUnit/3.13.1": {
+      "sha512": "vWBvrSelmTYwqHWvO3dA63z7cOpaFR/3nJ9MMVLBkWeaWa7oiglPPm5g1h96B4i2XXqjFexxhR5MyMjmIJYPfg==",
       "type": "package",
-      "path": "nunit/3.12.0",
+      "path": "nunit/3.13.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1818,29 +1818,23 @@
         "LICENSE.txt",
         "NOTICES.txt",
         "build/NUnit.props",
+        "icon.png",
         "lib/net35/nunit.framework.dll",
-        "lib/net35/nunit.framework.pdb",
         "lib/net35/nunit.framework.xml",
         "lib/net40/nunit.framework.dll",
-        "lib/net40/nunit.framework.pdb",
         "lib/net40/nunit.framework.xml",
         "lib/net45/nunit.framework.dll",
-        "lib/net45/nunit.framework.pdb",
         "lib/net45/nunit.framework.xml",
-        "lib/netstandard1.4/nunit.framework.dll",
-        "lib/netstandard1.4/nunit.framework.pdb",
-        "lib/netstandard1.4/nunit.framework.xml",
         "lib/netstandard2.0/nunit.framework.dll",
-        "lib/netstandard2.0/nunit.framework.pdb",
         "lib/netstandard2.0/nunit.framework.xml",
-        "nunit.3.12.0.nupkg.sha512",
+        "nunit.3.13.1.nupkg.sha512",
         "nunit.nuspec"
       ]
     },
-    "NUnit3TestAdapter/3.16.1": {
-      "sha512": "wKuxi7G9Gs2I9gnckwtMVzbPIy7vkNj+FafrmQPaYCUguT+se5kmzI3XwsVCXEalWk9pSYZW7roBkNu4ogn3DA==",
+    "NUnit3TestAdapter/3.17.0": {
+      "sha512": "I9MNvK+GM2yXrHPitwZkAZKU9sYI2OO/8wKC+VuBD7V3z+ySQ1pSopX/urr0ooedI8/TIcajYPRO4vGRr7AM8A==",
       "type": "package",
-      "path": "nunit3testadapter/3.16.1",
+      "path": "nunit3testadapter/3.17.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1849,13 +1843,15 @@
         "build/net35/NUnit3.TestAdapter.pdb",
         "build/net35/NUnit3TestAdapter.props",
         "build/net35/nunit.engine.api.dll",
+        "build/net35/nunit.engine.core.dll",
         "build/net35/nunit.engine.dll",
         "build/netcoreapp2.1/NUnit3.TestAdapter.dll",
         "build/netcoreapp2.1/NUnit3.TestAdapter.pdb",
         "build/netcoreapp2.1/NUnit3TestAdapter.props",
         "build/netcoreapp2.1/nunit.engine.api.dll",
+        "build/netcoreapp2.1/nunit.engine.core.dll",
         "build/netcoreapp2.1/nunit.engine.dll",
-        "nunit3testadapter.3.16.1.nupkg.sha512",
+        "nunit3testadapter.3.17.0.nupkg.sha512",
         "nunit3testadapter.nuspec"
       ]
     },
@@ -4470,31 +4466,31 @@
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "Moq >= 4.16.1",
-      "NUnit >= 3.12.0",
-      "NUnit3TestAdapter >= 3.16.1",
+      "NUnit >= 3.13.1",
+      "NUnit3TestAdapter >= 3.17.0",
       "Web.Payment >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amirabba\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\sher070\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
+      "projectUniqueName": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
       "projectName": "Web.Payment.UnitTest",
-      "projectPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
-      "packagesPath": "C:\\Users\\amirabba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\obj\\",
+      "projectPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
+      "packagesPath": "C:\\Users\\sher070\\.nuget\\packages\\",
+      "outputPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\amirabba\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\sher070\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -4505,9 +4501,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj": {
-              "projectPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj"
+            "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj": {
+              "projectPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj"
             }
           }
         }
@@ -4520,6 +4517,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
@@ -4531,11 +4529,11 @@
           },
           "NUnit": {
             "target": "Package",
-            "version": "[3.12.0, )"
+            "version": "[3.13.1, )"
           },
           "NUnit3TestAdapter": {
             "target": "Package",
-            "version": "[3.16.1, )"
+            "version": "[3.17.0, )"
           }
         },
         "imports": [
@@ -4549,14 +4547,11 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.117\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

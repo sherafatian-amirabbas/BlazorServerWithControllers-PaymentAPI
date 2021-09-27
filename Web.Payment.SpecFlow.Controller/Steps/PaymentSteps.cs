@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Web.Payment.Models;
-using System.Linq;
 using System.Text;
 using Web.Payment.Common;
 using Web.Payment.Logics;
@@ -49,25 +46,20 @@ namespace Web.Payment.SpecFlow.Controller.Steps
         [Then(@"the result must be successful")]
         public void ThenTheResultMustBeSuccessful()
         {
-            throw new NotImplementedException();
+            Assert.That(result.Succeed, Is.True);
+            Assert.That(result.Payload, Is.Not.Null);
         }
 
-        [Then(@"The response must contain the type of the Credit Card as ""(.*)""")]
-        public void ThenTheResponseMustContainTheTypeOfTheCreditCardAs(string p0)
+        [Then(@"The response must contain the type of the Credit Card as (.*)")]
+        public void ThenTheResponseMustContainTheTypeOfTheCreditCardAs(string cardTypeDisplayName)
         {
-            throw new NotImplementedException();
+            Assert.That(result.Payload.CardType.GetDisplayName(), Is.EqualTo(cardTypeDisplayName));
         }
 
         [Then(@"the result must NOT be successful")]
         public void ThenTheResultMustNOTBeSuccessful()
         {
             Assert.That(result.Succeed, Is.False);
-        }
-
-        [Then(@"The response must contain the error code")]
-        public void ThenTheResponseMustContainTheErrorCode()
-        {
-            throw new NotImplementedException();
         }
 
         [Then(@"The response must contain the error code (.*)")]

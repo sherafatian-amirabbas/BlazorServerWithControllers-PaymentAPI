@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj": {}
+    "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj": {
+    "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
+        "projectUniqueName": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
         "projectName": "Web.Payment.UnitTest",
-        "projectPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
-        "packagesPath": "C:\\Users\\amirabba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment.UnitTest\\obj\\",
+        "projectPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\Web.Payment.UnitTest.csproj",
+        "packagesPath": "C:\\Users\\sher070\\.nuget\\packages\\",
+        "outputPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\amirabba\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sher070\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,9 +30,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj": {
-                "projectPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj"
+              "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj": {
+                "projectPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj"
               }
             }
           }
@@ -45,6 +46,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -74,33 +76,30 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.117\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj": {
+    "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj",
+        "projectUniqueName": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj",
         "projectName": "Web.Payment",
-        "projectPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\Web.Payment.csproj",
-        "packagesPath": "C:\\Users\\amirabba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amirabba\\Desktop\\BlazorServerWithControllers\\Web.Payment\\obj\\",
+        "projectPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\Web.Payment.csproj",
+        "packagesPath": "C:\\Users\\sher070\\.nuget\\packages\\",
+        "outputPath": "C:\\Amir\\Projects\\BlazorServerWithControllers-PaymentAPI\\Web.Payment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\amirabba\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sher070\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -111,6 +110,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -122,6 +122,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Newtonsoft.Json": {
               "target": "Package",
@@ -146,7 +147,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.117\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

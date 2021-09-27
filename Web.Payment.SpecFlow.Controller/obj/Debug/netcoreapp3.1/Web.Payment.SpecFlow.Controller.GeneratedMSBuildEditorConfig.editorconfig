@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = Web.Payment.SpecFlow.Controller
+build_property.ProjectDir = C:\Amir\Projects\BlazorServerWithControllers-PaymentAPI\Web.Payment.SpecFlow.Controller\

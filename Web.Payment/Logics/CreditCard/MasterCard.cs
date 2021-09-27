@@ -28,6 +28,9 @@ namespace Web.Payment.Logics.CreditCard
 
         public override bool ValidateCardNumber()
         {
+            if (string.IsNullOrEmpty(this.CardNumber))
+                return false;
+
             return CardNumberRegex.IsMatch(this.CardNumber);
         }
 

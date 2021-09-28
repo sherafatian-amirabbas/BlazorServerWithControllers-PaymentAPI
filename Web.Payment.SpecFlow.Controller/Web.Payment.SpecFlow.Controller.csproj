@@ -25,11 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Drivers\" />
-    <Folder Include="Hooks\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Web.Payment\Web.Payment.csproj" />
   </ItemGroup>
 

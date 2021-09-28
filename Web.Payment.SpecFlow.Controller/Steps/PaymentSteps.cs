@@ -1,73 +1,75 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
-using System.Net.Http;
+﻿using System.Net;
+
+using NUnit.Framework;
+
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Web.Payment.Models;
-using System.Text;
+
 using Web.Payment.Common;
-using Web.Payment.Logics;
-using NUnit.Framework;
+using Web.Payment.SpecFlow.Controller.Support;
+using Web.Payment.SpecFlow.Controller.Drivers;
+
 
 namespace Web.Payment.SpecFlow.Controller.Steps
 {
     [Binding]
     public class PaymentSteps
     {
-        CreditCard creditCard;
-        ApiResult<PaymentSubmissionPayload> result;
+        private readonly PaymentDriver paymentDriver;
+
+
+        private CreditCardDataModel creditCard;
+        private PaymentDriver.VerificationResult verificationResult;
+
+
+        #region Constructor
+
+        public PaymentSteps(PaymentDriver paymentDriver)
+        {
+            this.paymentDriver = paymentDriver;
+        }
+
+        #endregion
 
 
         [Given(@"the payment data as")]
         public void GivenThePaymentDataAs(Table creditCardTable)
         {
-            creditCard = creditCardTable.CreateInstance<CreditCard>();
+            creditCard = creditCardTable.CreateInstance<CreditCardDataModel>();
         }
 
-        [When(@"the data is posted")]
-        public void WhenTheDataIsPosted()
+        [When(@"the data is posted to verify")]
+        public void WhenTheDataIsPostedToVerify()
         {
-            var factory = new WebApplicationFactory<Startup>();
-            var client = factory.CreateClient();
-            var requestContent = new StringContent(JsonConvert.SerializeObject(new {
-                CardOwner = creditCard.CardOwner,
-                CardNumber = creditCard.CardNumber,
-                ExpirationDate = creditCard.ExpirationDate,
-                CVC = creditCard.CVC,
-            }), Encoding.UTF8, "application/json");
-            var response = client.SendAsync(new HttpRequestMessage(HttpMethod.Post, "/api/payment")
-            {
-                Content = requestContent
-            }).Result;
-            var responseContent = response.Content.ReadAsStringAsync().Result;
-            result = JsonConvert.DeserializeObject<ApiResult<PaymentSubmissionPayload>>(responseContent);
+            verificationResult = this.paymentDriver.Verify(creditCard);
         }
+
 
         [Then(@"the result must be successful")]
         public void ThenTheResultMustBeSuccessful()
         {
-            Assert.That(result.Succeed, Is.True);
-            Assert.That(result.Payload, Is.Not.Null);
+            Assert.That(verificationResult.ApiResult.Succeed, Is.True);
+            Assert.That(verificationResult.ApiResult.Payload, Is.Not.Null);
+            Assert.That(verificationResult.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
-        [Then(@"The response must contain the type of the Credit Card as (.*)")]
+        [Then(@"the response must contain the type of the Credit Card as (.*)")]
         public void ThenTheResponseMustContainTheTypeOfTheCreditCardAs(string cardTypeDisplayName)
         {
-            Assert.That(result.Payload.CardType.GetDisplayName(), Is.EqualTo(cardTypeDisplayName));
+            Assert.That(verificationResult.ApiResult.Payload.CardType.GetDisplayName(), Is.EqualTo(cardTypeDisplayName));
         }
 
         [Then(@"the result must NOT be successful")]
         public void ThenTheResultMustNOTBeSuccessful()
         {
-            Assert.That(result.Succeed, Is.False);
+            Assert.That(verificationResult.ApiResult.Succeed, Is.False);
+            Assert.That(verificationResult.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
         }
 
-        [Then(@"The response must contain the error code (.*)")]
+        [Then(@"the response must contain the error code (.*)")]
         public void ThenTheResponseMustContainTheErrorCode(string ErrorCode)
         {
-            Assert.That(result.ErrorCode, Is.EqualTo(ErrorCode));
+            Assert.That(verificationResult.ApiResult.ErrorCode, Is.EqualTo(ErrorCode));
         }
-
-
     }
 }

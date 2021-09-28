@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
 using Web.Payment.SpecFlow.Controller.Support.Retreivers;
@@ -11,36 +10,29 @@ using Web.Payment.SpecFlow.Controller.Support.Retreivers;
 
 namespace Web.Payment.SpecFlow.Controller.Support
 {
-    [Binding]
-    class RetreiverHooks
+    public class Helper
     {
         static Lazy<List<IValueRetriever>> retreivers;
 
-
-        #region static constructor
-
-        static RetreiverHooks()
+        static Helper()
         {
-            retreivers = new Lazy<List<IValueRetriever>>(() => GetAllretreivers());
+            retreivers = new Lazy<List<IValueRetriever>>(() => ReflectAllRetreivers());
+        }
+
+
+        #region Static Methods
+
+        public static List<IValueRetriever> GetRetreivers()
+        {
+            return retreivers.Value;
         }
 
         #endregion
 
 
-        [BeforeScenario]
-        public void RegisterRetreivers()
-        {
-            retreivers.Value.ForEach(u =>
-            {
-                Service.Instance.ValueRetrievers.Unregister(u);
-                Service.Instance.ValueRetrievers.Register(u);
-            });
-        }
+        #region Private Methods
 
-
-        #region private methods
-
-        static private List<IValueRetriever> GetAllretreivers()
+        private static List<IValueRetriever> ReflectAllRetreivers()
         {
             return Assembly.GetAssembly(typeof(Retreiver<>)).GetTypes()
                     .Where(u =>

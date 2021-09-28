@@ -119,13 +119,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the payment data as", ((string)(null)), table1, "Given ");
 #line hidden
 #line 8
- testRunner.When("the data is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.And(string.Format("The response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -178,13 +178,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the payment data as", ((string)(null)), table2, "Given ");
 #line hidden
 #line 22
- testRunner.When("the data is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
- testRunner.And(string.Format("The response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -238,13 +238,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the payment data as", ((string)(null)), table3, "Given ");
 #line hidden
 #line 37
- testRunner.When("the data is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 38
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 39
- testRunner.And(string.Format("The response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -291,13 +291,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the payment data as", ((string)(null)), table4, "Given ");
 #line hidden
 #line 53
- testRunner.When("the data is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 54
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 55
- testRunner.And("The response must contain the error code 125", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the response must contain the error code 125", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -344,13 +344,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the payment data as", ((string)(null)), table5, "Given ");
 #line hidden
 #line 62
- testRunner.When("the data is posted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 63
  testRunner.Then("the result must be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 64
- testRunner.And("The response must contain the type of the Credit Card as American Express Card", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the response must contain the type of the Credit Card as American Express Card", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

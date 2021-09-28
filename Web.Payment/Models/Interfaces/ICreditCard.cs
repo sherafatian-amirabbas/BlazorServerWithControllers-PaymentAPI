@@ -1,4 +1,5 @@
 ﻿using System;
+using Web.Payment.Logics;
 
 namespace Web.Payment.Models.Interfaces
 {
@@ -8,5 +9,6 @@ namespace Web.Payment.Models.Interfaces
         string CardOwner { get; set; }
         string CVC { get; set; }
         DateTime ExpirationDate { get; set; }
+        CreditCardType Type { get; }
     }
 }

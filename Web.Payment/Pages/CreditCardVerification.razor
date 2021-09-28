@@ -1,0 +1,60 @@
+﻿@page "/CreditCardVerification"
+@page "/"
+
+
+@if (State != null && State.Model != null)
+{
+    <div class="card p-3 col-lg-6 offset-lg-3">
+
+        @if (State.VerificationResult != null && State.VerificationResult.Succeed)
+        {
+            <label class="text-success">@($"Operation is successfully done, the `{State.VerificationResult.Payload.CardType.GetDisplayName()}` is confirmed.")</label>
+        }
+        else
+        {
+            <Text>Please fill out the form to make the payment</Text>
+
+            <EditForm Model="State.Model" OnValidSubmit="VerificationHandler">
+
+                <br />
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="input_owner" placeholder="card owner"
+                           @bind-value="State.Model.CardOwner">
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="input_number" placeholder="card number"
+                           @bind-value="State.Model.CardNumber">
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="input_expiry" placeholder="expiration date"
+                           @bind-value="State.Model.ExpirationDate">
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="input_cvc" placeholder="CVC"
+                           @bind-value="State.Model.CVC">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Verify</button>
+
+                <br />
+                <br />
+
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <ValidationSummary></ValidationSummary>
+
+                @if (State.VerificationResult != null && !State.VerificationResult.Succeed)
+                {
+                    <ul>
+                        <li style="color: red;">@State.VerificationResult.ErrorMessage</li>
+                    </ul>
+                }
+
+            </EditForm>
+        }
+
+    </div>
+}

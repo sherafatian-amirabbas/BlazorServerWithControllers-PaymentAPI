@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Payment.Models.Interfaces;
 
 namespace Web.Payment.ViewModels
 {
-    public class PaymentModel : ICreditCard
+    public class VerificationModel
     {
         [Required(ErrorMessage = "Card Owner field is required.")]
         public string CardOwner { get; set; }
@@ -15,6 +11,7 @@ namespace Web.Payment.ViewModels
         [Required(ErrorMessage = "Card Number field is required.")]
         public string CardNumber { get; set; }
 
+        [Required(ErrorMessage = "Expiration Date field is required.")]
         public DateTime ExpirationDate { get; set; }
 
         [Required(ErrorMessage = "CVC field is required.")]

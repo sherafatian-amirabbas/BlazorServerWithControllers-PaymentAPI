@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Web.Payment.Common;
-using Web.Payment.Logics.CreditCard;
-using Web.Payment.Models;
+﻿using Web.Payment.Common;
 using Web.Payment.Models.Interfaces;
+
 
 namespace Web.Payment.Logics
 {
     public class Facade
     {
-        private static CreditCardFactory iCreditCardFactory;
+        private readonly CreditCardService creditCardService;
 
-        static Facade()
+        public Facade(CreditCardService creditCardService)
         {
-            iCreditCardFactory = new CreditCardFactory();
+            this.creditCardService = creditCardService;
         }
 
-        public static ApiResult<PaymentSubmissionPayload> SubmitPayment(ICreditCard cCard)
+        public Result<CreditCardService.VerificationPayload> VerifyCreditCard(ICreditCard cCard)
         {
-            return new Payment(cCard, iCreditCardFactory).Submit();
+            return this.creditCardService.Verify(cCard);
         }
     }
 }

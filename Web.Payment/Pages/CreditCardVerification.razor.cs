@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+
+using Newtonsoft.Json;
 using Web.Payment.Common;
-using Web.Payment.Logics;
 using Web.Payment.ViewModels;
+using Web.Payment.Logics;
 
 namespace Web.Payment.Pages
 {
@@ -43,9 +44,9 @@ namespace Web.Payment.Pages
         {
             var serialized = JsonConvert.SerializeObject(State.Model);
             var stringContent = new StringContent(serialized, Encoding.UTF8, "application/json");
-            var response = await http.PostAsync($"{navigationManager.BaseUri}api/payment", stringContent);
+            var response = await http.PostAsync($"{navigationManager.BaseUri}api/CreditCard/verify", stringContent);
             var result = await response.Content.ReadAsStringAsync();
-            State.VerificationResult = JsonConvert.DeserializeObject<ApiResult<PaymentSubmissionPayload>>(result);
+            State.VerificationResult = JsonConvert.DeserializeObject<Result<CreditCardService.VerificationPayload>>(result);
         }
 
         #endregion
@@ -56,7 +57,7 @@ namespace Web.Payment.Pages
         protected class VerificationState
         {
             public VerificationModel Model { get; set; }
-            public ApiResult<PaymentSubmissionPayload> VerificationResult { get; set; }
+            public Result<CreditCardService.VerificationPayload> VerificationResult { get; set; }
         }
 
         #endregion

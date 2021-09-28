@@ -10,7 +10,7 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
 {
     public class PaymentDriver
     {
-        const string END_POINT = "/api/payment";
+        const string END_POINT = "/api/CreditCard/verify";
 
         private readonly ApplicationContext appContext;
         private readonly AppHttpClient appHttpClient;
@@ -34,8 +34,8 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
             var endPoint = new Uri(this.appContext.BaseUri, END_POINT);
             var content = this.appHttpClient.SerializeContent(creditCard);
             var response = this.appHttpClient.Post(content, endPoint);
-            var apiResult = this.appHttpClient.DeserializeContent<ApiResult<PaymentSubmissionPayload>>(response);
-            return new VerificationResult(response.StatusCode, apiResult);
+            var result = this.appHttpClient.DeserializeContent<Result<CreditCardService.VerificationPayload>>(response);
+            return new VerificationResult(response.StatusCode, result);
         }
 
         #endregion
@@ -45,14 +45,14 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
 
         public class VerificationResult
         {
-            public VerificationResult(HttpStatusCode statusCode, ApiResult<PaymentSubmissionPayload> apiResult)
+            public VerificationResult(HttpStatusCode statusCode, Result<CreditCardService.VerificationPayload> result)
             {
                 StatusCode = statusCode;
-                ApiResult = apiResult;
+                ApiResult = result;
             }
 
             public HttpStatusCode StatusCode { get; }
-            public ApiResult<PaymentSubmissionPayload> ApiResult { get; }
+            public Result<CreditCardService.VerificationPayload> ApiResult { get; }
         }
 
         #endregion

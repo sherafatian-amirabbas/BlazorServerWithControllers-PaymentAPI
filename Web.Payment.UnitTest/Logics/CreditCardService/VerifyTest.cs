@@ -1,14 +1,15 @@
-using NUnit.Framework;
 using System;
-using logics = Web.Payment.Logics;
-using Web.Payment.Logics.CreditCard;
-using Web.Payment.Models;
+
+using NUnit.Framework;
 using Moq;
+
+using Web.Payment.Models;
+using Web.Payment.Logics.CreditCards;
 using Web.Payment.Logics;
 
-namespace Web.Payment.UnitTest.Logics.Business
+namespace Web.Payment.UnitTest.Logics.CreditCardService
 {
-    public class PaymentTest
+    public class VerifyTest
     {
         Mock<ICreditCardFactory> iCreditCardFactory = null;
         CreditCard cCard = null;
@@ -19,10 +20,10 @@ namespace Web.Payment.UnitTest.Logics.Business
             iCreditCardFactory = new Mock<ICreditCardFactory>();
             cCard = new CreditCard()
             {
-                CardOwner = "",
-                CardNumber = "",
-                CVC = "",
-                ExpirationDate = default(DateTime)
+                CardOwner = "CardOwner",
+                CardNumber = "371449635398431",
+                CVC = "6789",
+                ExpirationDate = DateTime.Now.AddMonths(1)
             };
         }
 
@@ -33,14 +34,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        public void Submit_WhenCardOwnerIsNotValid_ReturnErrorCode100(string cardOwner)
+        public void Verify_WhenCardOwnerIsNotValid_ReturnErrorCode100(string cardOwner)
         {
             // Arrange
             cCard.CardOwner = cardOwner;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -51,15 +52,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        public void Submit_WhenCardNumberIsEmpty_ReturnErrorCode105(string cardNumber)
+        public void Verify_WhenCardNumberIsEmpty_ReturnErrorCode105(string cardNumber)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -70,16 +70,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        public void Submit_WhenCVCIsEmpty_ReturnErrorCode110(string cvc)
+        public void Verify_WhenCVCIsEmpty_ReturnErrorCode110(string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "232423";
             cCard.CVC = cvc;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -90,16 +88,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("0")]
         [TestCase("-1")]
         [TestCase("-123")]
-        public void Submit_WhenCVCIsZeroOrNegative_ReturnErrorCode115(string cvc)
+        public void Verify_WhenCVCIsZeroOrNegative_ReturnErrorCode115(string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "232423";
             cCard.CVC = cvc;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -117,16 +113,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Submit_WhenVisaCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenVisaCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
-            cCard.CVC = "123";
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -144,16 +138,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Submit_WhenMasterCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenMasterCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
-            cCard.CVC = "123";
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -171,16 +163,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Submit_WhenAmericanExpressCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenAmericanExpressCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
-            cCard.CVC = "123";
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -188,17 +178,14 @@ namespace Web.Payment.UnitTest.Logics.Business
         }
 
         [Test]
-        public void Submit_WhenExpirationDateIsPassed_ReturnErrorCode125()
+        public void Verify_WhenExpirationDateIsPassed_ReturnErrorCode125()
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "4222222222222"; // A valid Visa card number
-            cCard.CVC = "123";
             cCard.ExpirationDate = DateTime.Now.AddDays(-1);
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -214,17 +201,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Submit_WhenCVCIsNotValidForVisaCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForVisaCard_ReturnErrorCode130(string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "4222222222222"; // A valid Visa card number
+            cCard.CardNumber = "4444333222111";
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -240,17 +225,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Submit_WhenCVCIsNotValidForMasterCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForMasterCard_ReturnErrorCode130(string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "5555555555554444"; // A valid Master card number
+            cCard.CardNumber = "5105105105105100";
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -266,17 +249,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Submit_WhenCVCIsNotValidForAmericanExpressCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForAmericanExpressCard_ReturnErrorCode130(string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
-            cCard.CardNumber = "371449635398431"; // A valid American card number
+            cCard.CardNumber = "378282246310005";
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -291,17 +272,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [Test]
         [TestCase("4012888888881881", "123")]
         [TestCase("4444333222111", "678")]
-        public void Submit_WhenCreditCardInfoIsValidForVisaCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
+        public void Verify_WhenCreditCardInfoIsValidForVisaCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);
@@ -311,17 +290,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [Test]
         [TestCase("5555555555554444", "123")]
         [TestCase("5105105105105100", "678")]
-        public void Submit_WhenCreditCardInfoIsValidForMasterCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
+        public void Verify_WhenCreditCardInfoIsValidForMasterCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);
@@ -331,17 +308,15 @@ namespace Web.Payment.UnitTest.Logics.Business
         [Test]
         [TestCase("378282246310005", "1234")]
         [TestCase("371449635398431", "6789")]
-        public void Submit_WhenCreditCardInfoIsValidForAmericanExpressCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
+        public void Verify_WhenCreditCardInfoIsValidForAmericanExpressCard_ReturnCardTypeAndSucceedAsTrue(string cardNumber, string cvc)
         {
             // Arrange
-            cCard.CardOwner = "Owner";
             cCard.CardNumber = cardNumber;
             cCard.CVC = cvc;
-            cCard.ExpirationDate = DateTime.Now;
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new logics.Payment(cCard, iCreditCardFactory.Object).Submit();
+            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);

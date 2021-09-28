@@ -1,27 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
+
 using Web.Payment.Logics;
-using Web.Payment.Models.Interfaces;
 using Web.Payment.Models;
-using Web.Payment.ViewModels;
+
 
 namespace Web.Payment.Controllers
 {
     public class ApiController : Controller
     {
-        [Route("/api/payment")]
-        [HttpPost]
-        public IActionResult Payment([FromBody]CreditCard cCard)
+        private readonly Facade facade;
+
+        public ApiController(Facade facade)
         {
-            var result = Facade.SubmitPayment(cCard);
+            this.facade = facade;
+        }
+
+
+        [Route("/api/CreditCard/verify")]
+        [HttpPost]
+        public IActionResult Verify([FromBody]CreditCard cCard)
+        {
+            var result = facade.VerifyCreditCard(cCard);
             var returnValue = new JsonResult(result);
 
             if (!result.Succeed)
-                returnValue.StatusCode = result.StatusCode;
+                returnValue.StatusCode = (int)HttpStatusCode.BadRequest;
 
             return returnValue;
         }

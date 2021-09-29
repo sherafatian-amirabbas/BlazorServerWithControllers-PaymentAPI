@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace Web.Payment.Logics
 {
     public enum CreditCardType
     {
+        [Display(Name = "None")]
+        None = 1,
+
         [Display(Name = "Visa Card")]
-        VisaCard = 1,
+        VisaCard = 2,
 
         [Display(Name = "Master Card")]
-        MasterCard = 2,
+        MasterCard = 4,
 
         [Display(Name = "American Express Card")]
-        AmericanCard = 4
+        AmericanCard = 8
     }
 }

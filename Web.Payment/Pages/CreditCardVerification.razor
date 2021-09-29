@@ -46,10 +46,15 @@
                 <DataAnnotationsValidator></DataAnnotationsValidator>
                 <ValidationSummary></ValidationSummary>
 
-                @if (State.VerificationResult != null && !State.VerificationResult.Succeed)
+                @if (State.VerificationResult != null &&
+               !State.VerificationResult.Succeed &&
+               State.VerificationResult.Errors != null)
                 {
                     <ul>
-                        <li style="color: red;">@State.VerificationResult.ErrorMessage</li>
+                        @foreach (var item in State.VerificationResult.Errors)
+                        {
+                            <li style="color: red;">@item.ErrorMessage</li>
+                        }
                     </ul>
                 }
 

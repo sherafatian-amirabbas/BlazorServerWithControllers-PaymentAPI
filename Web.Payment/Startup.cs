@@ -1,9 +1,11 @@
 using System.Net.Http;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Web.Payment.Logics;
 using Web.Payment.Logics.CreditCards;
 
@@ -29,7 +31,7 @@ namespace Web.Payment
 
             services.AddScoped<HttpClient>();
 
-            services.AddSingleton<Facade>();
+            services.AddSingleton<CreditCardFacade>();
             services.AddSingleton<CreditCardService>();
             services.AddSingleton<ICreditCardFactory, CreditCardFactory>();
         }

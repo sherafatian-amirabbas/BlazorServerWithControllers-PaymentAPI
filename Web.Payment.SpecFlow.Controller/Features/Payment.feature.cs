@@ -75,8 +75,8 @@ namespace Web.Payment.SpecFlow.Controller.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The provided Card Owner is not provided")]
-        [NUnit.Framework.TestCaseAttribute("when card owner is null", "<null>", "100", null)]
-        [NUnit.Framework.TestCaseAttribute("when card owner is empty or whitespace", "", "100", null)]
+        [NUnit.Framework.TestCaseAttribute("when card owner is null", "<null>", "CC100", null)]
+        [NUnit.Framework.TestCaseAttribute("when card owner is empty or whitespace", "", "CC100", null)]
         public virtual void TheProvidedCardOwnerIsNotProvided(string description, string cardOwner, string errorCode, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -133,9 +133,8 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The provided Card Number is not valid")]
-        [NUnit.Framework.TestCaseAttribute("when card number is null", "<null>", "105", null)]
-        [NUnit.Framework.TestCaseAttribute("when card number is empty or whitespace", "", "105", null)]
-        [NUnit.Framework.TestCaseAttribute("when card number has invalid format", "4646hg37", "120", null)]
+        [NUnit.Framework.TestCaseAttribute("when card number is null", "<null>", "CC105", null)]
+        [NUnit.Framework.TestCaseAttribute("when card number is empty or whitespace", "", "CC105", null)]
         public virtual void TheProvidedCardNumberIsNotValid(string description, string cardNumber, string errorCode, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -192,10 +191,9 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The provided CVC is not valid")]
-        [NUnit.Framework.TestCaseAttribute("when CVC is null", "<null>", "110", null)]
-        [NUnit.Framework.TestCaseAttribute("when CVC is empty or whitespace", "", "110", null)]
-        [NUnit.Framework.TestCaseAttribute("when CVC is not a number", "abc", "115", null)]
-        [NUnit.Framework.TestCaseAttribute("when CVC has invalid format", "464637", "130", null)]
+        [NUnit.Framework.TestCaseAttribute("when CVC is null", "<null>", "CC110", null)]
+        [NUnit.Framework.TestCaseAttribute("when CVC is empty or whitespace", "", "CC110", null)]
+        [NUnit.Framework.TestCaseAttribute("when CVC is not a number", "abc", "CC115", null)]
         public virtual void TheProvidedCVCIsNotValid(string description, string cVC, string errorCode, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -204,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("CVC", cVC);
             argumentsOfScenario.Add("Error Code", errorCode);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The provided CVC is not valid", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 33
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -234,16 +232,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "5555555555554444",
                             "<next_month>",
                             string.Format("{0}", cVC)});
-#line 34
+#line 33
  testRunner.Given("the payment data as", ((string)(null)), table3, "Given ");
 #line hidden
-#line 37
+#line 36
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 38
+#line 37
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 39
+#line 38
  testRunner.And(string.Format("the response must contain the error code {0}", errorCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -257,7 +255,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The Card is expired", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 49
+#line 47
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -287,17 +285,17 @@ this.ScenarioInitialize(scenarioInfo);
                             "5555555555554444",
                             "<last_month>",
                             "437"});
-#line 50
+#line 48
  testRunner.Given("the payment data as", ((string)(null)), table4, "Given ");
 #line hidden
-#line 53
+#line 51
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 54
+#line 52
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 55
- testRunner.And("the response must contain the error code 125", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+ testRunner.And("the response must contain the error code CC125", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -310,7 +308,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The provided data is valid", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 58
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -340,16 +338,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "378282246310005",
                             "<next_month>",
                             "4325"});
-#line 59
+#line 57
  testRunner.Given("the payment data as", ((string)(null)), table5, "Given ");
 #line hidden
-#line 62
+#line 60
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 63
+#line 61
  testRunner.Then("the result must be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 64
+#line 62
  testRunner.And("the response must contain the type of the Credit Card as American Express Card", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -11,8 +11,8 @@ Scenario Outline: The provided Card Owner is not provided
 
 	Examples:
 		| description                            | Card owner | Error Code |
-		| when card owner is null                | <null>     | 100        |
-		| when card owner is empty or whitespace |            | 100        |
+		| when card owner is null                | <null>     | CC100      |
+		| when card owner is empty or whitespace |            | CC100      |
 
 # ======================================================================================== invalid Card Number
 Scenario Outline: The provided Card Number is not valid
@@ -25,9 +25,8 @@ Scenario Outline: The provided Card Number is not valid
 
 	Examples:
 		| description                             | Card Number | Error Code |
-		| when card number is null                | <null>      | 105        |
-		| when card number is empty or whitespace |             | 105        |
-		| when card number has invalid format     | 4646hg37    | 120        |
+		| when card number is null                | <null>      | CC105      |
+		| when card number is empty or whitespace |             | CC105      |
 
 # ======================================================================================== invalid CVC
 Scenario Outline: The provided CVC is not valid
@@ -40,10 +39,9 @@ Scenario Outline: The provided CVC is not valid
 
 	Examples:
 		| description                     | CVC    | Error Code |
-		| when CVC is null                | <null> | 110        |
-		| when CVC is empty or whitespace |        | 110        |
-		| when CVC is not a number        | abc    | 115        |
-		| when CVC has invalid format     | 464637 | 130        |
+		| when CVC is null                | <null> | CC110        |
+		| when CVC is empty or whitespace |        | CC110        |
+		| when CVC is not a number        | abc    | CC115        |
 
 # ======================================================================================== card is expired
 Scenario: The Card is expired
@@ -52,7 +50,7 @@ Scenario: The Card is expired
 		| Owner's Name | 5555555555554444 | <last_month>   | 437 |
 	When the data is posted to verify
 	Then the result must NOT be successful
-	And the response must contain the error code 125
+	And the response must contain the error code CC125
 
 # ======================================================================================== provided valid data
 Scenario: The provided data is valid

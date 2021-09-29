@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Web.Payment.ViewModels
 {
     public class VerificationModel

@@ -1,27 +1,37 @@
 ﻿using System.Net;
+
 using Microsoft.AspNetCore.Mvc;
 
 using Web.Payment.Logics;
 using Web.Payment.Models;
+using Web.Payment.Common;
 
 
 namespace Web.Payment.Controllers
 {
     public class ApiController : Controller
     {
-        private readonly Facade facade;
+        private readonly CreditCardFacade creditCardFacade;
 
-        public ApiController(Facade facade)
+        public ApiController(CreditCardFacade creditCardFacade)
         {
-            this.facade = facade;
+            this.creditCardFacade = creditCardFacade;
         }
 
 
         [Route("/api/CreditCard/verify")]
         [HttpPost]
-        public IActionResult Verify([FromBody]CreditCard cCard)
+        public IActionResult Verify([FromBody] CreditCard cCard)
         {
-            var result = facade.VerifyCreditCard(cCard);
+            Result<CreditCardService.VerificationPayload> result;
+            if (!ModelState.IsValid)
+            {
+                var errorList = ModelState.ToErrorList();
+                result = new Result<CreditCardService.VerificationPayload>(Errors: errorList);
+            }
+            else
+                result = creditCardFacade.VerifyCreditCard(cCard);
+
             var returnValue = new JsonResult(result);
 
             if (!result.Succeed)

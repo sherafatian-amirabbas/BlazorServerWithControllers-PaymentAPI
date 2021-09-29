@@ -1,6 +1,4 @@
-﻿using Web.Payment.Common;
-
-
+﻿
 namespace Web.Payment.Logics.CreditCards.Validators
 {
     public class AmericanCardValidator : ICardValidator

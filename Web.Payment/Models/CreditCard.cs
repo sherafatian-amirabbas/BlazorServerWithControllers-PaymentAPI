@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using Web.Payment.Models.Interfaces;
 using Web.Payment.Logics;
-using Web.Payment.Logics.CreditCards;
 using Web.Payment.Logics.CreditCards.Validators;
+using Web.Payment.DataAnnotationValidators;
+
 
 namespace Web.Payment.Models
 {
@@ -26,12 +28,17 @@ namespace Web.Payment.Models
 
         #region Properties
 
+        [Required(ErrorMessage = "CC100")]
         public string CardOwner { get; set; }
 
+        [Required(ErrorMessage = "CC105")]
         public string CardNumber { get; set; }
 
+        [NotExpiredDate(ErrorMessage = "CC125")]
         public DateTime ExpirationDate { get; set; }
 
+        [Required(ErrorMessage = "CC110")]
+        [Range(0, int.MaxValue, ErrorMessage = "CC115")]
         public string CVC { get; set; }
 
         #endregion
@@ -39,7 +46,7 @@ namespace Web.Payment.Models
 
         #region Abstract Members
 
-        public virtual CreditCardType CardType { get => throw new NotImplementedException(); }
+        public virtual CreditCardType CardType { get => CreditCardType.None; }
 
         public virtual ICardValidator GetCardValidator() => throw new NotImplementedException();
 

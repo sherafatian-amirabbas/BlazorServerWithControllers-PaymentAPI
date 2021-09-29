@@ -1,17 +1,23 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 using Newtonsoft.Json;
+
 using Web.Payment.Common;
 using Web.Payment.ViewModels;
 using Web.Payment.Logics;
+
 
 namespace Web.Payment.Pages
 {
     public partial class CreditCardVerification : ComponentBase
     {
+        const string END_POINT = "api/CreditCard/verify";
+
+
         #region Injects
 
         [Inject]
@@ -44,7 +50,7 @@ namespace Web.Payment.Pages
         {
             var serialized = JsonConvert.SerializeObject(State.Model);
             var stringContent = new StringContent(serialized, Encoding.UTF8, "application/json");
-            var response = await http.PostAsync($"{navigationManager.BaseUri}api/CreditCard/verify", stringContent);
+            var response = await http.PostAsync($"{navigationManager.BaseUri + END_POINT}", stringContent);
             var result = await response.Content.ReadAsStringAsync();
             State.VerificationResult = JsonConvert.DeserializeObject<Result<CreditCardService.VerificationPayload>>(result);
         }

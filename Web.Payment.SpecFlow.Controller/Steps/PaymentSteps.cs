@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using System.Linq;
+using System.Collections;
 
 using NUnit.Framework;
 
@@ -8,7 +10,7 @@ using TechTalk.SpecFlow.Assist;
 using Web.Payment.Common;
 using Web.Payment.SpecFlow.Controller.Support;
 using Web.Payment.SpecFlow.Controller.Drivers;
-
+using Web.Payment.Logics;
 
 namespace Web.Payment.SpecFlow.Controller.Steps
 {
@@ -44,12 +46,12 @@ namespace Web.Payment.SpecFlow.Controller.Steps
             verificationResult = this.paymentDriver.Verify(creditCard);
         }
 
-
         [Then(@"the result must be successful")]
         public void ThenTheResultMustBeSuccessful()
         {
             Assert.That(verificationResult.ApiResult.Succeed, Is.True);
             Assert.That(verificationResult.ApiResult.Payload, Is.Not.Null);
+            Assert.That(verificationResult.ApiResult.Payload.CardType, Is.Not.EqualTo(CreditCardType.None));
             Assert.That(verificationResult.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
@@ -69,7 +71,7 @@ namespace Web.Payment.SpecFlow.Controller.Steps
         [Then(@"the response must contain the error code (.*)")]
         public void ThenTheResponseMustContainTheErrorCode(string ErrorCode)
         {
-            Assert.That(verificationResult.ApiResult.ErrorCode, Is.EqualTo(ErrorCode));
+            Assert.That(verificationResult.ApiResult.Errors.ContainsCode(ErrorCode), Is.True);
         }
     }
 }

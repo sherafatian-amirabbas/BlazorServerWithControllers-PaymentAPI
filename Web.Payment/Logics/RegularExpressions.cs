@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 
-namespace Web.Payment.Common
+namespace Web.Payment.Logics
 {
     public static class RegularExpressions
     {

@@ -6,6 +6,8 @@ using Moq;
 using Web.Payment.Models;
 using Web.Payment.Logics.CreditCards;
 using Web.Payment.Logics;
+using Web.Payment.Common;
+
 
 namespace Web.Payment.UnitTest.Logics.CreditCardService
 {
@@ -31,78 +33,6 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         #region Failed Cases
 
         [Test]
-        [TestCase(null)]
-        [TestCase("")]
-        [TestCase("  ")]
-        public void Verify_WhenCardOwnerIsNotValid_ReturnErrorCode100(string cardOwner)
-        {
-            // Arrange
-            cCard.CardOwner = cardOwner;
-            iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
-
-            // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
-
-            // Assert
-            Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("100"));
-        }
-
-        [Test]
-        [TestCase(null)]
-        [TestCase("")]
-        [TestCase("  ")]
-        public void Verify_WhenCardNumberIsEmpty_ReturnErrorCode105(string cardNumber)
-        {
-            // Arrange
-            cCard.CardNumber = cardNumber;
-            iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
-
-            // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
-
-            // Assert
-            Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("105"));
-        }
-
-        [Test]
-        [TestCase(null)]
-        [TestCase("")]
-        [TestCase("  ")]
-        public void Verify_WhenCVCIsEmpty_ReturnErrorCode110(string cvc)
-        {
-            // Arrange
-            cCard.CVC = cvc;
-            iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
-
-            // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
-
-            // Assert
-            Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("110"));
-        }
-
-        [Test]
-        [TestCase("0")]
-        [TestCase("-1")]
-        [TestCase("-123")]
-        public void Verify_WhenCVCIsZeroOrNegative_ReturnErrorCode115(string cvc)
-        {
-            // Arrange
-            cCard.CVC = cvc;
-            iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(() => null);
-
-            // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
-
-            // Assert
-            Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("115"));
-        }
-
-        [Test]
         [TestCase("0")]
         [TestCase("1111111111111111")]
         [TestCase("222222222222222")]
@@ -113,7 +43,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Verify_WhenVisaCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenVisaCardNumberIsNotValid_ReturnErrorCodeCC120(string cardNumber)
         {
             // Arrange
             cCard.CardNumber = cardNumber;
@@ -124,7 +54,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("120"));
+            Assert.That(result.Errors.ContainsCode("CC120"), Is.True);
         }
 
         [Test]
@@ -138,7 +68,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Verify_WhenMasterCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenMasterCardNumberIsNotValid_ReturnErrorCodeCC120(string cardNumber)
         {
             // Arrange
             cCard.CardNumber = cardNumber;
@@ -149,7 +79,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("120"));
+            Assert.That(result.Errors.ContainsCode("CC120"), Is.True);
         }
 
         [Test]
@@ -163,7 +93,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("76009244561")] // Dankort card
         [TestCase("888888888888888")]
         [TestCase("999999999999999")]
-        public void Verify_WhenAmericanExpressCardNumberIsNotValid_ReturnErrorCode120(string cardNumber)
+        public void Verify_WhenAmericanExpressCardNumberIsNotValid_ReturnErrorCodeCC120(string cardNumber)
         {
             // Arrange
             cCard.CardNumber = cardNumber;
@@ -174,22 +104,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("120"));
-        }
-
-        [Test]
-        public void Verify_WhenExpirationDateIsPassed_ReturnErrorCode125()
-        {
-            // Arrange
-            cCard.ExpirationDate = DateTime.Now.AddDays(-1);
-            iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
-
-            // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
-
-            // Assert
-            Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("125"));
+            Assert.That(result.Errors.ContainsCode("CC120"), Is.True);
         }
 
         [Test]
@@ -201,7 +116,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Verify_WhenCVCIsNotValidForVisaCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForVisaCard_ReturnErrorCodeCC130(string cvc)
         {
             // Arrange
             cCard.CardNumber = "4444333222111";
@@ -213,7 +128,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("130"));
+            Assert.That(result.Errors.ContainsCode("CC130"), Is.True);
         }
 
         [Test]
@@ -225,7 +140,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Verify_WhenCVCIsNotValidForMasterCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForMasterCard_ReturnErrorCodeCC130(string cvc)
         {
             // Arrange
             cCard.CardNumber = "5105105105105100";
@@ -237,7 +152,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("130"));
+            Assert.That(result.Errors.ContainsCode("CC130"), Is.True);
         }
 
         [Test]
@@ -249,7 +164,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
         [TestCase("1234567")]
         [TestCase("12345678")]
         [TestCase("123456789")]
-        public void Verify_WhenCVCIsNotValidForAmericanExpressCard_ReturnErrorCode130(string cvc)
+        public void Verify_WhenCVCIsNotValidForAmericanExpressCard_ReturnErrorCodeCC130(string cvc)
         {
             // Arrange
             cCard.CardNumber = "378282246310005";
@@ -261,7 +176,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
 
             // Assert
             Assert.That(result.Succeed, Is.False);
-            Assert.That(result.ErrorCode, Is.EqualTo("130"));
+            Assert.That(result.Errors.ContainsCode("CC130"), Is.True);
         }
 
         #endregion

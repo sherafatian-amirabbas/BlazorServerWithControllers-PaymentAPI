@@ -1,6 +1,4 @@
 ﻿using System.Net;
-using System.Linq;
-using System.Collections;
 
 using NUnit.Framework;
 
@@ -12,29 +10,30 @@ using Web.Payment.SpecFlow.Controller.Support;
 using Web.Payment.SpecFlow.Controller.Drivers;
 using Web.Payment.Logics;
 
+
 namespace Web.Payment.SpecFlow.Controller.Steps
 {
     [Binding]
-    public class PaymentSteps
+    public class CreditCardSteps
     {
-        private readonly PaymentDriver paymentDriver;
+        private readonly CreditCardDriver creditCardDriver;
 
 
         private CreditCardDataModel creditCard;
-        private PaymentDriver.VerificationResult verificationResult;
+        private CreditCardDriver.VerificationResult verificationResult;
 
 
         #region Constructor
 
-        public PaymentSteps(PaymentDriver paymentDriver)
+        public CreditCardSteps(CreditCardDriver paymentDriver)
         {
-            this.paymentDriver = paymentDriver;
+            this.creditCardDriver = paymentDriver;
         }
 
         #endregion
 
 
-        [Given(@"the payment data as")]
+        [Given(@"the Credit Card data as")]
         public void GivenThePaymentDataAs(Table creditCardTable)
         {
             creditCard = creditCardTable.CreateInstance<CreditCardDataModel>();
@@ -43,7 +42,7 @@ namespace Web.Payment.SpecFlow.Controller.Steps
         [When(@"the data is posted to verify")]
         public void WhenTheDataIsPostedToVerify()
         {
-            verificationResult = this.paymentDriver.Verify(creditCard);
+            verificationResult = this.creditCardDriver.Verify(creditCard);
         }
 
         [Then(@"the result must be successful")]

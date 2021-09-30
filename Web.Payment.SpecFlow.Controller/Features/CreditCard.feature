@@ -1,8 +1,8 @@
-﻿Feature: Payment
+﻿Feature: CreditCard
 
 # ======================================================================================== invalid Card Owner
 Scenario Outline: The provided Card Owner is not provided
-	Given the payment data as
+	Given the Credit Card data as
 		| CardOwner    | CardNumber       | ExpirationDate | CVC |
 		| <Card owner> | 5555555555554444 | <next_month>   | 432 |
 	When the data is posted to verify
@@ -16,7 +16,7 @@ Scenario Outline: The provided Card Owner is not provided
 
 # ======================================================================================== invalid Card Number
 Scenario Outline: The provided Card Number is not valid
-	Given the payment data as
+	Given the Credit Card data as
 		| CardOwner    | CardNumber    | ExpirationDate | CVC |
 		| Owner's Name | <Card Number> | <next_month>   | 432 |
 	When the data is posted to verify
@@ -30,7 +30,7 @@ Scenario Outline: The provided Card Number is not valid
 
 # ======================================================================================== invalid CVC
 Scenario Outline: The provided CVC is not valid
-	Given the payment data as
+	Given the Credit Card data as
 		| CardOwner    | CardNumber       | ExpirationDate | CVC   |
 		| Owner's Name | 5555555555554444 | <next_month>   | <CVC> |
 	When the data is posted to verify
@@ -45,7 +45,7 @@ Scenario Outline: The provided CVC is not valid
 
 # ======================================================================================== card is expired
 Scenario: The Card is expired
-	Given the payment data as
+	Given the Credit Card data as
 		| CardOwner    | CardNumber       | ExpirationDate | CVC |
 		| Owner's Name | 5555555555554444 | <last_month>   | 437 |
 	When the data is posted to verify
@@ -54,7 +54,7 @@ Scenario: The Card is expired
 
 # ======================================================================================== provided valid data
 Scenario: The provided data is valid
-	Given the payment data as
+	Given the Credit Card data as
 		| CardOwner    | CardNumber      | ExpirationDate | CVC  |
 		| Owner's Name | 378282246310005 | <next_month>   | 4325 |
 	When the data is posted to verify

@@ -8,7 +8,7 @@ using Web.Payment.SpecFlow.Controller.Support;
 
 namespace Web.Payment.SpecFlow.Controller.Drivers
 {
-    public class PaymentDriver
+    public class CreditCardDriver
     {
         const string END_POINT = "/api/CreditCard/verify";
 
@@ -18,7 +18,7 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
 
         #region Constructors
 
-        public PaymentDriver(ApplicationContext appContext, AppHttpClient appHttpclient)
+        public CreditCardDriver(ApplicationContext appContext, AppHttpClient appHttpclient)
         {
             this.appContext = appContext;
             this.appHttpClient = appHttpclient;

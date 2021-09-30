@@ -20,22 +20,22 @@ namespace Web.Payment.SpecFlow.Controller.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Payment")]
-    public partial class PaymentFeature
+    [NUnit.Framework.DescriptionAttribute("CreditCard")]
+    public partial class CreditCardFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Payment.feature"
+#line 1 "CreditCard.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Payment", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreditCard", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "<next_month>",
                             "432"});
 #line 5
- testRunner.Given("the payment data as", ((string)(null)), table1, "Given ");
+ testRunner.Given("the Credit Card data as", ((string)(null)), table1, "Given ");
 #line hidden
 #line 8
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "<next_month>",
                             "432"});
 #line 19
- testRunner.Given("the payment data as", ((string)(null)), table2, "Given ");
+ testRunner.Given("the Credit Card data as", ((string)(null)), table2, "Given ");
 #line hidden
 #line 22
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -233,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "<next_month>",
                             string.Format("{0}", cVC)});
 #line 33
- testRunner.Given("the payment data as", ((string)(null)), table3, "Given ");
+ testRunner.Given("the Credit Card data as", ((string)(null)), table3, "Given ");
 #line hidden
 #line 36
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -286,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "<last_month>",
                             "437"});
 #line 48
- testRunner.Given("the payment data as", ((string)(null)), table4, "Given ");
+ testRunner.Given("the Credit Card data as", ((string)(null)), table4, "Given ");
 #line hidden
 #line 51
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -339,7 +339,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "<next_month>",
                             "4325"});
 #line 57
- testRunner.Given("the payment data as", ((string)(null)), table5, "Given ");
+ testRunner.Given("the Credit Card data as", ((string)(null)), table5, "Given ");
 #line hidden
 #line 60
  testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

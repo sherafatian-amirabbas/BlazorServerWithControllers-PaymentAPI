@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using Web.Payment.Logics;
-using Web.Payment.Logics.CreditCards;
-
+using Web.Payment.Logics.CreditCards.Brands;
+using Web.Payment.Logics.CreditCards.Services;
+using Web.Payment.Logics.Services;
 
 namespace Web.Payment   
 {
@@ -31,8 +31,7 @@ namespace Web.Payment
 
             services.AddScoped<HttpClient>();
 
-            services.AddSingleton<CreditCardFacade>();
-            services.AddSingleton<CreditCardService>();
+            services.AddSingleton<ICreditCardService, CreditCardService>();
             services.AddSingleton<ICreditCardFactory, CreditCardFactory>();
         }
 

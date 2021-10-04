@@ -1,9 +1,9 @@
 ﻿
 namespace Web.Payment.Common
 {
-    public class Err
+    public class ResultError
     {
-        public Err(string code, string errorMessage)
+        public ResultError(string code, string errorMessage)
         {
             Code = code;
             ErrorMessage = errorMessage;
@@ -18,7 +18,7 @@ namespace Web.Payment.Common
 
         public override bool Equals(object obj)
         {
-            var ins = (obj as Err);
+            var ins = (obj as ResultError);
             return ins != null &&
                 ins.Code == this.Code &&
                 ins.ErrorMessage == this.ErrorMessage;

@@ -28,24 +28,24 @@ namespace Web.Payment.Common
         }
 
 
-        public static IEnumerable<Err> ToErrorList(this ModelStateDictionary modelState)
+        public static IEnumerable<ResultError> ToErrorList(this ModelStateDictionary modelState)
         {
             return modelState.Values.SelectMany(u => u.Errors)
                 .Join(Messages.Instance,
                     modelError => modelError.ErrorMessage,
                     keyPair => keyPair.Key,
-                    (modelError, keyPair) => new Err(keyPair.Key, keyPair.Value))
+                    (modelError, keyPair) => new ResultError(keyPair.Key, keyPair.Value))
                 .ToList();
         }
 
 
-        public static bool ContainsCode(this IEnumerable<Err> errors, string code)
+        public static bool ContainsCode(this IEnumerable<ResultError> errors, string code)
         {
             return errors == null ? false : errors.Any(u => u.Code == code);
         }
 
 
-        public static Dictionary<string, string> ToErrorDict(this IEnumerable<Err> errors)
+        public static Dictionary<string, string> ToErrorDict(this IEnumerable<ResultError> errors)
         {
             var dict = errors != null ?
                 errors.ToDictionary(u => u.Code, u => u.ErrorMessage) :

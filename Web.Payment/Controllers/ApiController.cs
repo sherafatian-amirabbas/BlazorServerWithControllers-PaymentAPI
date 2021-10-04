@@ -2,20 +2,20 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using Web.Payment.Logics;
 using Web.Payment.Models;
 using Web.Payment.Common;
+using Web.Payment.Logics.Services;
 
 
 namespace Web.Payment.Controllers
 {
     public class ApiController : Controller
     {
-        private readonly CreditCardFacade creditCardFacade;
+        private readonly ICreditCardService creditCardService;
 
-        public ApiController(CreditCardFacade creditCardFacade)
+        public ApiController(ICreditCardService creditCardService)
         {
-            this.creditCardFacade = creditCardFacade;
+            this.creditCardService = creditCardService;
         }
 
 
@@ -23,14 +23,14 @@ namespace Web.Payment.Controllers
         [HttpPost]
         public IActionResult Verify([FromBody] CreditCard cCard)
         {
-            Result<CreditCardService.VerificationPayload> result;
+            Result<IVerificationPayload> result;
             if (!ModelState.IsValid)
             {
                 var errorList = ModelState.ToErrorList();
-                result = new Result<CreditCardService.VerificationPayload>(Errors: errorList);
+                result = new Result<IVerificationPayload>(Errors: errorList);
             }
             else
-                result = creditCardFacade.VerifyCreditCard(cCard);
+                result = creditCardService.Verify(cCard);
 
             var returnValue = new JsonResult(result);
 

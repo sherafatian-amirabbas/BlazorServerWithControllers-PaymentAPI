@@ -11,16 +11,16 @@ namespace Web.Payment.Common
     {
         #region Constructor
 
-        public Result(bool succeed = false, IEnumerable<Err> Errors = null)
+        public Result(bool succeed = false, IEnumerable<ResultError> Errors = null)
         {
             this.Succeed = succeed;
-            this.Errors = Errors ?? Enumerable.Empty<Err>();
+            this.Errors = Errors ?? Enumerable.Empty<ResultError>();
         }
 
         #endregion
 
         public bool Succeed { get; set; }
-        public IEnumerable<Err> Errors { get; set; }
+        public IEnumerable<ResultError> Errors { get; set; }
         public TPayload Payload { get; set; }
     }
 }

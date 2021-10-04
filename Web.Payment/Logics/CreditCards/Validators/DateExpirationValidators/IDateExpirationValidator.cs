@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Web.Payment.Common.DataAnnotationValidators
+namespace Web.Payment.Logics.CreditCards.Validators.DateExpirationValidators
 {
     public interface IDateExpirationValidator
     {

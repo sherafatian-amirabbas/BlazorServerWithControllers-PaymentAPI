@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 
 using Web.Payment.Common;
-using Web.Payment.Common.DataAnnotationValidators;
-using Web.Payment.Logics.CreditCards;
+using Web.Payment.Logics.CreditCards.Brands;
 using Web.Payment.Logics.CreditCards.Validators.DateExpirationValidators;
+using Web.Payment.Logics.Services;
 using Web.Payment.Models.Interfaces;
 
 
-namespace Web.Payment.Logics
+namespace Web.Payment.Logics.CreditCards.Services
 {
-    public class CreditCardService
+    public class CreditCardService : ICreditCardService
     {
         #region Static Mmbers
 
-        public static IDateExpirationValidator DateValidator { get; private set; }
-        static CreditCardService()
-        {
-            DateValidator = new DateJustExpiredValidator();
-        }
+        static Lazy<IDateExpirationValidator> _dateValidator =
+            new Lazy<IDateExpirationValidator>(() => new DateJustExpiredValidator());
 
         #endregion
 
@@ -38,24 +35,26 @@ namespace Web.Payment.Logics
 
         #region Public Methods
 
-        public Result<VerificationPayload> Verify(ICreditCard iCreditCard)
+        public IDateExpirationValidator DateExpirationValidator => _dateValidator.Value;
+
+        public Result<IVerificationPayload> Verify(ICreditCard iCreditCard)
         {
             if (iCreditCard == null)
                 throw new ArgumentNullException();
 
-            List<Err> errors = new List<Err>();
+            List<ResultError> errors = new List<ResultError>();
 
             var cCard = this.iCreditCardFactory.GetConcreteCreditCard(iCreditCard);
             if (cCard == null)
-                errors.Add(new Err("CC120", Messages.CC120));
+                errors.Add(new ResultError("CC120", Messages.CC120));
             else
             {
                 var validator = cCard.GetCardValidator();
                 if (!validator.ValidateCVC(cCard.CVC))
-                    errors.Add(new Err("CC130", Messages.CC130));
+                    errors.Add(new ResultError("CC130", Messages.CC130));
             }
 
-            var result = new Result<VerificationPayload>(false, errors);
+            var result = new Result<IVerificationPayload>(false, errors);
             if (errors.Count == 0)
             {
                 result.Succeed = true;
@@ -63,21 +62,6 @@ namespace Web.Payment.Logics
             }
 
             return result;
-        }
-
-        #endregion
-
-
-        #region Inner Classes
-
-        public class VerificationPayload
-        {
-            public VerificationPayload(CreditCardType cardType)
-            {
-                this.CardType = cardType;
-            }
-
-            public CreditCardType CardType { get; set; }
         }
 
         #endregion

@@ -1,7 +1,5 @@
 ﻿using System;
 
-using Web.Payment.Common.DataAnnotationValidators;
-
 
 namespace Web.Payment.Logics.CreditCards.Validators.DateExpirationValidators
 {

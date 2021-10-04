@@ -3,16 +3,16 @@ using Web.Payment.Models;
 using Web.Payment.Logics.CreditCards.Validators;
 
 
-namespace Web.Payment.Logics.CreditCards
+namespace Web.Payment.Logics.CreditCards.Brands
 {
-    public class VisaCard : CreditCard
+    public class AmericanCard : CreditCard
     {
         #region Static Members
 
         public static ICardValidator Validator { get; private set; }
-        static VisaCard()
+        static AmericanCard()
         {
-            Validator = new VisaCardValidator();
+            Validator = new AmericanCardValidator();
         }
 
         #endregion
@@ -20,14 +20,14 @@ namespace Web.Payment.Logics.CreditCards
 
         #region Constructors
 
-        public VisaCard(ICreditCard card) : base(card) { }
+        public AmericanCard(ICreditCard card) : base(card) { }
 
         #endregion
 
 
         #region Override Methods
 
-        public override CreditCardType CardType => CreditCardType.VisaCard;
+        public override CreditCardType CardType => CreditCardType.AmericanCard;
 
         public override ICardValidator GetCardValidator() => Validator;
 

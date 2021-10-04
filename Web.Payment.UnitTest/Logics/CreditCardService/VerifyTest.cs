@@ -7,7 +7,7 @@ using Web.Payment.Models;
 using Web.Payment.Logics.CreditCards;
 using Web.Payment.Logics;
 using Web.Payment.Common;
-
+using Web.Payment.Logics.CreditCards.Brands;
 
 namespace Web.Payment.UnitTest.Logics.CreditCardService
 {
@@ -50,7 +50,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -75,7 +75,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -100,7 +100,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(null)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -124,7 +124,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -148,7 +148,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -172,7 +172,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.False);
@@ -195,7 +195,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new VisaCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);
@@ -213,7 +213,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new MasterCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);
@@ -231,7 +231,7 @@ namespace Web.Payment.UnitTest.Logics.CreditCardService
             iCreditCardFactory.Setup(t => t.GetConcreteCreditCard(cCard)).Returns(new AmericanCard(cCard));
 
             // Act
-            var result = new Payment.Logics.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
+            var result = new Payment.Logics.CreditCards.Services.CreditCardService(iCreditCardFactory.Object).Verify(cCard);
 
             // Assert
             Assert.That(result.Succeed, Is.True);

@@ -10,16 +10,11 @@ namespace Web.Payment.SpecFlow.Controller.Support
     {
         #region Static Members
 
-        static WebApplicationFactory<Startup> _appFactory;
-        static Lazy<HttpClient> _httpClientLazy;
-        static Lazy<Uri> _baseUri;
+        static Lazy<WebApplicationFactory<Startup>> _appFactory = new Lazy<WebApplicationFactory<Startup>>(() => new WebApplicationFactory<Startup>());
 
-        static ApplicationContext()
-        {
-            _appFactory = new WebApplicationFactory<Startup>();
-            _httpClientLazy = new Lazy<HttpClient>(() => _appFactory.CreateClient());
-            _baseUri = new Lazy<Uri>(() => _appFactory.ClientOptions.BaseAddress);
-        }
+        static Lazy<HttpClient> _httpClientLazy = new Lazy<HttpClient>(() => _appFactory.Value.CreateClient());
+
+        static Lazy<Uri> _baseUri = new Lazy<Uri>(() => _appFactory.Value.ClientOptions.BaseAddress);
 
         #endregion
 

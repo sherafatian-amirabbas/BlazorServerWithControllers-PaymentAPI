@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net;
 
-using Web.Payment.Common;
-using Web.Payment.Logics.CreditCards.Services;
 using Web.Payment.SpecFlow.Controller.Support;
 
 
@@ -34,7 +32,7 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
             var endPoint = new Uri(this.appContext.BaseUri, END_POINT);
             var content = this.appHttpClient.SerializeContent(creditCard);
             var response = this.appHttpClient.Post(content, endPoint);
-            var result = this.appHttpClient.DeserializeContent<Result<VerificationPayload>>(response);
+            var result = this.appHttpClient.DeserializeContent<SPCreditCardAPIResult<SPCreditCardVerificationPayload>>(response);
             return new VerificationResult(response.StatusCode, result);
         }
 
@@ -45,14 +43,14 @@ namespace Web.Payment.SpecFlow.Controller.Drivers
 
         public class VerificationResult
         {
-            public VerificationResult(HttpStatusCode statusCode, Result<VerificationPayload> result)
+            public VerificationResult(HttpStatusCode statusCode, SPCreditCardAPIResult<SPCreditCardVerificationPayload> result)
             {
                 StatusCode = statusCode;
                 ApiResult = result;
             }
 
             public HttpStatusCode StatusCode { get; }
-            public Result<VerificationPayload> ApiResult { get; }
+            public SPCreditCardAPIResult<SPCreditCardVerificationPayload> ApiResult { get; }
         }
 
         #endregion

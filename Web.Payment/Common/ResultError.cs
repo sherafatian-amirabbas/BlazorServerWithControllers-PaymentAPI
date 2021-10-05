@@ -1,7 +1,9 @@
-﻿
+﻿using Web.Payment.Logics.Services;
+
+
 namespace Web.Payment.Common
 {
-    public class ResultError
+    public class ResultError : IResultError
     {
         public ResultError(string code, string errorMessage)
         {

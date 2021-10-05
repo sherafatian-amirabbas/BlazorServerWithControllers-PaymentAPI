@@ -6,18 +6,14 @@ using System.Linq;
 using TechTalk.SpecFlow.Assist;
 
 using Web.Payment.SpecFlow.Controller.Support.Retreivers;
+using Web.Payment.SpecFlow.Controller.Drivers;
 
 
 namespace Web.Payment.SpecFlow.Controller.Support
 {
-    public class Helper
+    public static class Helper
     {
-        static Lazy<List<IValueRetriever>> retreivers;
-
-        static Helper()
-        {
-            retreivers = new Lazy<List<IValueRetriever>>(() => ReflectAllRetreivers());
-        }
+        static Lazy<List<IValueRetriever>> retreivers = new Lazy<List<IValueRetriever>>(() => ReflectAllRetreivers());
 
 
         #region Static Methods
@@ -25,6 +21,16 @@ namespace Web.Payment.SpecFlow.Controller.Support
         public static List<IValueRetriever> GetRetreivers()
         {
             return retreivers.Value;
+        }
+
+        #endregion
+
+
+        #region Extension Methods
+
+        public static bool ContainsCode(this IEnumerable<SPCreditCardAPIResultError> errors, string code)
+        {
+            return errors == null ? false : errors.Any(u => u.Code == code);
         }
 
         #endregion

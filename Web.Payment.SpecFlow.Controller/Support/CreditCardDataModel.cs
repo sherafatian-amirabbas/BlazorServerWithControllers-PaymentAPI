@@ -1,4 +1,6 @@
 ﻿using System;
+using Web.Payment.Models.Interfaces;
+
 
 namespace Web.Payment.SpecFlow.Controller.Support
 {

@@ -39,7 +39,7 @@ namespace Web.Payment.SpecFlow.Controller.Steps
             creditCard = creditCardTable.CreateInstance<CreditCardDataModel>();
         }
 
-        [When(@"the data is posted to verify")]
+        [When(@"the data is posted to be verified")]
         public void WhenTheDataIsPostedToVerify()
         {
             verificationResult = this.creditCardDriver.Verify(creditCard);

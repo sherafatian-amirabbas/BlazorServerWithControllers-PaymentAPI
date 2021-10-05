@@ -6,11 +6,6 @@ using Web.Payment.Models.Interfaces;
 
 namespace Web.Payment.Logics.CreditCards.Brands
 {
-    public interface ICreditCardFactory
-    {
-        CreditCard GetConcreteCreditCard(ICreditCard cCard);
-    }
-
     public class CreditCardFactory : ICreditCardFactory
     {
         public CreditCard GetConcreteCreditCard(ICreditCard cCard)

@@ -1,4 +1,6 @@
-﻿using Web.Payment.Models.Interfaces;
+﻿using System;
+
+using Web.Payment.Models.Interfaces;
 using Web.Payment.Models;
 using Web.Payment.Logics.CreditCards.Validators;
 
@@ -9,11 +11,8 @@ namespace Web.Payment.Logics.CreditCards.Brands
     {
         #region Static Members
 
-        public static ICardValidator Validator { get; private set; }
-        static VisaCard()
-        {
-            Validator = new VisaCardValidator();
-        }
+        private static Lazy<ICardValidator> _validator = new Lazy<ICardValidator>(() => new VisaCardValidator());
+        public static ICardValidator Validator => _validator.Value;
 
         #endregion
 

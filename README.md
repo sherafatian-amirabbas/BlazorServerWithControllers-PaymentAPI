@@ -13,12 +13,12 @@ Input parameters: Card Owner, Credit Card Number, Expiration Date and CVC.
 ##### User Story:
 As an API consumer,  
 I want to have the provided Credit Card info validated,
-So that I am aware of either potential errors or the Credit Card type.   
+So that I am aware of either potential errors or the the type of the Credit Card.   
 
 _Acceptance Citeria:_   
 The Card Owner has to be provided and it is required.   
-The Card Number is required and needs to follow the specified format of that kind.   
-The CVC is required and needs to follow the specified format of that kind.   
+The Card Number is required and needs to follow the respective format of that kind.   
+The CVC is required and needs to follow the respective format of that kind.   
 The Issue Date is required and the Credit Card must not be expired.   
 The API must recognize and specify the type of the Credit Card in the response.
 
@@ -30,5 +30,5 @@ The CVC 3245 is not a valid CVC for MasterCard type, since it must contain 3 dig
 <br/>
 The Expiration Date is one month before today, so the Card is expired.   
 <br/>
-The Card Number 378282246310005 is a valid American Express card and in the response we must receive this specific type recognized by the API (assuming there are not any other validation error).   
+The Card Number 378282246310005 is a valid American Express card and in the response we must receive the respective type recognized by the API (assuming there are not any other validation errors).   
 <br/>

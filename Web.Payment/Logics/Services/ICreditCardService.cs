@@ -8,6 +8,6 @@ namespace Web.Payment.Logics.Services
     public interface ICreditCardService
     {
         IDateExpirationValidator DateExpirationValidator { get; }
-        Result<IVerificationPayload> Verify(ICreditCard iCreditCard);
+        IResult<IVerificationPayload> Verify(ICreditCard iCreditCard);
     }
 }

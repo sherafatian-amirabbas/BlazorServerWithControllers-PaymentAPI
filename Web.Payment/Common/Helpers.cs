@@ -7,6 +7,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 using Web.Payment.Logics;
+using Web.Payment.Logics.Services;
 
 
 namespace Web.Payment.Common
@@ -39,13 +40,13 @@ namespace Web.Payment.Common
         }
 
 
-        public static bool ContainsCode(this IEnumerable<ResultError> errors, string code)
+        public static bool ContainsCode(this IEnumerable<IResultError> errors, string code)
         {
             return errors == null ? false : errors.Any(u => u.Code == code);
         }
 
 
-        public static Dictionary<string, string> ToErrorDict(this IEnumerable<ResultError> errors)
+        public static Dictionary<string, string> ToErrorDict(this IEnumerable<IResultError> errors)
         {
             var dict = errors != null ?
                 errors.ToDictionary(u => u.Code, u => u.ErrorMessage) :

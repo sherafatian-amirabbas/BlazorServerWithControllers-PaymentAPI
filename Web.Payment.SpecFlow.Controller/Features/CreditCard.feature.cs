@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Credit Card data as", ((string)(null)), table1, "Given ");
 #line hidden
 #line 8
- testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to be verified", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -177,7 +177,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Credit Card data as", ((string)(null)), table2, "Given ");
 #line hidden
 #line 22
- testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to be verified", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -236,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Credit Card data as", ((string)(null)), table3, "Given ");
 #line hidden
 #line 36
- testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to be verified", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 37
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -289,7 +289,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Credit Card data as", ((string)(null)), table4, "Given ");
 #line hidden
 #line 51
- testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to be verified", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 52
  testRunner.Then("the result must NOT be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -342,7 +342,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Credit Card data as", ((string)(null)), table5, "Given ");
 #line hidden
 #line 60
- testRunner.When("the data is posted to verify", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the data is posted to be verified", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 61
  testRunner.Then("the result must be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

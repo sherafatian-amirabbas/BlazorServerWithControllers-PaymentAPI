@@ -37,7 +37,7 @@ namespace Web.Payment.Logics.CreditCards.Services
 
         public IDateExpirationValidator DateExpirationValidator => _dateValidator.Value;
 
-        public Result<IVerificationPayload> Verify(ICreditCard iCreditCard)
+        public IResult<IVerificationPayload> Verify(ICreditCard iCreditCard)
         {
             if (iCreditCard == null)
                 throw new ArgumentNullException();

@@ -1,5 +1,6 @@
 ﻿using Web.Payment.Logics.Services;
 
+
 namespace Web.Payment.Logics.CreditCards.Services
 {
     public class VerificationPayload : IVerificationPayload

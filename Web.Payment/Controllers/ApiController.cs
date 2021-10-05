@@ -23,7 +23,7 @@ namespace Web.Payment.Controllers
         [HttpPost]
         public IActionResult Verify([FromBody] CreditCard cCard)
         {
-            Result<IVerificationPayload> result;
+            IResult<IVerificationPayload> result;
             if (!ModelState.IsValid)
             {
                 var errorList = ModelState.ToErrorList();

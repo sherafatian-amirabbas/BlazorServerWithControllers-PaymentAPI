@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,18 +7,13 @@ using System.Reflection;
 
 namespace Web.Payment.Logics
 {
-    public class Messages : IEnumerable<KeyValuePair<string, string>>
+    public sealed class Messages : IEnumerable<KeyValuePair<string, string>>
     {
         #region Static Members
 
-        static Dictionary<string, string> _dict;
+        static Lazy<Dictionary<string, string>> _dict = new Lazy<Dictionary<string, string>>(() => GetMessages());
+        
         static Messages instance = null;
-
-        static Messages()
-        {
-            _dict = GetMessages();
-        }
-
         public static Messages Instance
         {
             get
@@ -35,15 +31,9 @@ namespace Web.Payment.Logics
 
         #region Constructor
 
-        private Messages()
-        {
-
-        }
+        private Messages() { }
 
         #endregion
-
-
-        public string this[string key] { get => _dict[key]; }
 
 
         #region Messages
@@ -55,6 +45,13 @@ namespace Web.Payment.Logics
         public const string CC120 = "Card Number is not valid";
         public const string CC125 = "The card is expired";
         public const string CC130 = "CVC is not valid";
+
+        #endregion
+
+
+        #region Indexer
+
+        public string this[string key] { get => _dict.Value[key]; }
 
         #endregion
 
@@ -77,12 +74,12 @@ namespace Web.Payment.Logics
 
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
-            return _dict.GetEnumerator();
+            return _dict.Value.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _dict.GetEnumerator();
+            return _dict.Value.GetEnumerator();
         }
 
         #endregion

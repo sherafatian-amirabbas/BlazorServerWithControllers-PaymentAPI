@@ -1,4 +1,7 @@
-﻿
+﻿using Web.Payment.Common;
+using Web.Payment.Logics.CreditCards.Brands;
+
+
 namespace Web.Payment.Logics.CreditCards.Validators
 {
     public class AmericanCardValidator : ICardValidator
@@ -8,7 +11,7 @@ namespace Web.Payment.Logics.CreditCards.Validators
             if (string.IsNullOrEmpty(cardNumber))
                 return false;
 
-            return RegularExpressions.AmericanExpressCardNumber.IsMatch(cardNumber);
+            return AmericanCard.AmericanExpressCardNumber.IsMatch(cardNumber);
         }
 
         public bool ValidateCVC(string CVC)

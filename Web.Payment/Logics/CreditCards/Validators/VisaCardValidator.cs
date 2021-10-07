@@ -1,4 +1,7 @@
-﻿
+﻿using Web.Payment.Common;
+using Web.Payment.Logics.CreditCards.Brands;
+
+
 namespace Web.Payment.Logics.CreditCards.Validators
 {
     public class VisaCardValidator : ICardValidator
@@ -8,7 +11,7 @@ namespace Web.Payment.Logics.CreditCards.Validators
             if (string.IsNullOrEmpty(cardNumber))
                 return false;
 
-            return RegularExpressions.VisaCardNumber.IsMatch(cardNumber);
+            return VisaCard.VisaCardNumber.IsMatch(cardNumber);
         }
 
         public bool ValidateCVC(string CVC)

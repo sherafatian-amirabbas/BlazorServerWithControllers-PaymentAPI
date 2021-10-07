@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Web.Payment.Logics.CreditCards.Brands;
+using Web.Payment.Logics.CreditCards.Brands.interfaces;
 using Web.Payment.Logics.CreditCards.Services;
 using Web.Payment.Logics.Services;
 

@@ -3,7 +3,7 @@
 using Web.Payment.Models.Interfaces;
 using Web.Payment.Models;
 using Web.Payment.Logics.CreditCards.Validators;
-
+using Web.Payment.Logics.CreditCards.Brands.interfaces;
 
 namespace Web.Payment.Logics.CreditCards.Brands
 {
@@ -13,6 +13,8 @@ namespace Web.Payment.Logics.CreditCards.Brands
 
         private static Lazy<ICardValidator> _validator = new Lazy<ICardValidator>(() => new VisaCardValidator());
         public static ICardValidator Validator => _validator.Value;
+
+        public static ICardBuilder<VisaCard> Builder => new CardBuilder();
 
         #endregion
 
@@ -29,6 +31,19 @@ namespace Web.Payment.Logics.CreditCards.Brands
         public override CreditCardType CardType => CreditCardType.VisaCard;
 
         public override ICardValidator GetCardValidator() => Validator;
+
+        #endregion
+
+
+        #region Inner Classes
+
+        public class CardBuilder : ICardBuilder<VisaCard>
+        {
+            public VisaCard Create(ICreditCard card)
+            {
+                return new VisaCard(card);
+            }
+        }
 
         #endregion
     }

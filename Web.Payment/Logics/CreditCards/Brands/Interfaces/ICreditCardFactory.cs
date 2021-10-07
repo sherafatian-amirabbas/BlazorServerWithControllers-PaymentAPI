@@ -2,7 +2,7 @@
 using Web.Payment.Models.Interfaces;
 
 
-namespace Web.Payment.Logics.CreditCards.Brands
+namespace Web.Payment.Logics.CreditCards.Brands.interfaces
 {
     public interface ICreditCardFactory
     {

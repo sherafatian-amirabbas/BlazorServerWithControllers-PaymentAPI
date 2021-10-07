@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using Web.Payment.Common;
-using Web.Payment.Logics.CreditCards.Brands;
+using Web.Payment.Logics.CreditCards.Brands.interfaces;
 using Web.Payment.Logics.CreditCards.Validators.DateExpirationValidators;
 using Web.Payment.Logics.Services;
 using Web.Payment.Models.Interfaces;

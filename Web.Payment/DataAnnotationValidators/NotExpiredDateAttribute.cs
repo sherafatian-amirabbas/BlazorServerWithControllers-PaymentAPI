@@ -10,7 +10,7 @@ namespace Web.Payment.DataAnnotationValidators
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value != null && value is DateTime)
+            if (value is DateTime)
             {
                 var dateExpirationValidator = GetDateExpirationValidator(validationContext);
                 if (dateExpirationValidator.IsExpired((DateTime)value))

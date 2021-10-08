@@ -16,7 +16,7 @@ namespace Web.Payment.Logics.CreditCards.Brands
         /// <summary>
         /// MasterCard numbers either start with the numbers 51 through 55 or with the numbers 2221 through 2720. All have 16 digits. http://www.regular-expressions.info/creditcard.html
         /// </summary>
-        public static Regex MasterCardNumber = new Regex(@"^5[1-5][0-9]{14}$", RegexOptions.Compiled);
+        public static readonly Regex MasterCardNumber = new Regex(@"^5[1-5][0-9]{14}$", RegexOptions.Compiled);
 
         private static Lazy<ICardValidator> _validator = new Lazy<ICardValidator>(() => new MasterCardValidator());
         public static ICardValidator Validator => _validator.Value;

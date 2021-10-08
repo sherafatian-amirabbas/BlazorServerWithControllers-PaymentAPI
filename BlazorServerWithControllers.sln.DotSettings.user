@@ -1,9 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\sher070\AppData\Local\Temp\JetBrains\ReSharperPlatformVs16\vAny_c8db18d0\CoverageData\_BlazorServerWithControllers.498578137\Snapshot\snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4674386a_002D1803_002D4c8f_002Dbb45_002D316eba9560eb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VerifyTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::EC548577-BC15-4A32-BB0C-24EAF50E6FF3::.NETCoreApp,Version=v3.1::Web.Payment.UnitTest.Logics.CreditCard.Services.VerifyTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::EC548577-BC15-4A32-BB0C-24EAF50E6FF3::.NETCoreApp,Version=v3.1::Web.Payment.UnitTest.Logics.CreditCard.Services.VerifyTest&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;Project Location="C:\Amir\Projects\BlazorServerWithControllers-PaymentAPI\Web.Payment.SpecFlow.Controller" Presentation="&amp;lt;Web.Payment.SpecFlow.Controller&amp;gt;" /&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	

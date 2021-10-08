@@ -28,9 +28,9 @@ namespace Web.Payment.SpecFlow.Controller.Support
 
         #region Extension Methods
 
-        public static bool ContainsCode(this IEnumerable<SPCreditCardAPIResultError> errors, string code)
+        public static bool ContainsCode(this IEnumerable<SpCreditCardApiResultError> errors, string code)
         {
-            return errors == null ? false : errors.Any(u => u.Code == code);
+            return errors != null && errors.Any(u => u.Code == code);
         }
 
         #endregion

@@ -42,7 +42,7 @@ namespace Web.Payment.Common
 
         public static bool ContainsCode(this IEnumerable<IResultError> errors, string code)
         {
-            return errors == null ? false : errors.Any(u => u.Code == code);
+            return errors != null && errors.Any(u => u.Code == code);
         }
 
 

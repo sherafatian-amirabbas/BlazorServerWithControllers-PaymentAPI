@@ -16,7 +16,7 @@ namespace Web.Payment.Logics.CreditCards.Brands
         /// <summary>
         /// American Express card numbers start with 34 or 37 and have 15 digits. http://www.regular-expressions.info/creditcard.html
         /// </summary>
-        public static Regex AmericanExpressCardNumber = new Regex(@"^3[47][0-9]{13}$", RegexOptions.Compiled);
+        public static readonly Regex AmericanExpressCardNumber = new Regex(@"^3[47][0-9]{13}$", RegexOptions.Compiled);
 
         private static Lazy<ICardValidator> _validator = new Lazy<ICardValidator>(() => new AmericanCardValidator());
         public static ICardValidator Validator => _validator.Value;

@@ -40,9 +40,13 @@ namespace Web.Payment.Logics.CreditCards.Services
         public IResult<IVerificationPayload> Verify(ICreditCard iCreditCard)
         {
             if (iCreditCard == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("iCreditCard", "cannot be null");
 
+
+            bool succeed = false;
             List<ResultError> errors = new List<ResultError>();
+            VerificationPayload payload = null;
+
 
             var cCard = this.iCreditCardFactory.GetConcreteCreditCard(iCreditCard);
             if (cCard == null)
@@ -50,18 +54,16 @@ namespace Web.Payment.Logics.CreditCards.Services
             else
             {
                 var validator = cCard.GetCardValidator();
-                if (!validator.ValidateCVC(cCard.CVC))
+                if (validator.ValidateCVC(cCard.CVC))
+                {
+                    succeed = true;
+                    payload = new VerificationPayload(cCard.CardType);
+                }
+                else 
                     errors.Add(new ResultError("CC130", Messages.CC130));
             }
 
-            var result = new Result<IVerificationPayload>(false, errors);
-            if (errors.Count == 0)
-            {
-                result.Succeed = true;
-                result.Payload = new VerificationPayload(cCard.CardType);
-            }
-
-            return result;
+            return new Result<IVerificationPayload>(succeed, errors, payload);
         }
 
         #endregion

@@ -28,7 +28,7 @@ namespace Web.Payment.Common
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return (this.Code + this.ErrorMessage).GetHashCode();
         }
 
         #endregion

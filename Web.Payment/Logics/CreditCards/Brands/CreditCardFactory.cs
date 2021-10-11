@@ -26,7 +26,7 @@ namespace Web.Payment.Logics.CreditCards.Brands
         public CreditCard GetConcreteCreditCard(ICreditCard cCard)
         {
             if (cCard == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("cCard", "cannot be null");
 
             var brand = brands.Value.FirstOrDefault(u => u.Validator.ValidateCardNumber(cCard.CardNumber));
             if (brand != null)
